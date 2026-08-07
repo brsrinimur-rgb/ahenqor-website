@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetailRecon AI | AI-Powered Retail Financial Control — AHENQOR Technologies</title>
+<meta name="description" content="RetailRecon AI reconciles Store Tender, POS, Bank and BNPL settlements, surfaces SAR at risk, assigns exceptions, drives recovery, prepares controlled JV outputs, and supports the finance close.">
+<style>
+
+  :root{
+    --bg:#0a0e17;
+    --bg-alt:#0f1420;
+    --bg-card:#131a29;
+    --border:#212b3d;
+    --text:#e9edf5;
+    --text-dim:#9aa5b8;
+    --text-faint:#6b7590;
+    --accent:#5b8cff;
+    --accent2:#7c5cff;
+    --accent-grad:linear-gradient(135deg,#5b8cff 0%,#7c5cff 100%);
+    --green:#37d399;
+    --amber:#e0a030;
+    --red:#ef8264;
+    --radius:14px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  section{position:relative;}
+  .sec{padding:100px 0;}
+  .sec-alt{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .sec-tight{padding:64px 0;}
+
+  body::before{
+    content:"";
+    position:fixed;top:-200px;left:50%;transform:translateX(-50%);
+    width:900px;height:900px;
+    background:radial-gradient(circle,rgba(91,140,255,0.16) 0%,rgba(124,92,255,0.06) 40%,transparent 70%);
+    pointer-events:none;z-index:0;
+  }
+
+  /* Topbar breadcrumb */
+  .topbar{background:var(--bg-alt);border-bottom:1px solid var(--border);padding:8px 0;}
+  .topbar .wrap{text-align:center;font-size:12px;color:var(--text-faint);}
+  .topbar strong{color:var(--text-dim);font-weight:600;}
+  .crumb-sep{margin:0 7px;color:var(--text-faint);}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,14,23,0.9);
+    backdrop-filter:blur(10px);
+  }
+  nav{
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--border);
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:0.3px;}
+  .logo-mark{
+    width:32px;height:32px;border-radius:8px;
+    background:var(--accent-grad);
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;color:#fff;
+  }
+  .logo-sub{font-size:12px;color:var(--text-faint);font-weight:400;margin-left:4px;}
+  .nav-links{display:flex;gap:26px;align-items:center;}
+  .nav-links a{color:var(--text-dim);font-size:13.5px;font-weight:500;transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{display:flex;gap:12px;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px 22px;border-radius:9px;font-size:14px;font-weight:600;
+    cursor:pointer;border:none;transition:all .2s;white-space:nowrap;
+  }
+  .btn-primary{background:var(--accent-grad);color:#fff;box-shadow:0 4px 20px rgba(91,140,255,0.35);}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(91,140,255,0.5);}
+  .btn-ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border);}
+  .btn-ghost:hover{color:var(--text);border-color:var(--text-faint);}
+  .btn-lg{padding:15px 30px;font-size:15px;}
+  .menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;}
+
+  /* Mobile menu */
+  .mobile-menu{display:none;flex-direction:column;gap:2px;padding:8px 24px 22px;border-bottom:1px solid var(--border);background:var(--bg);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:13px 0;font-size:15px;font-weight:500;color:var(--text-dim);border-bottom:1px solid var(--border);}
+  .mobile-menu a:last-of-type{border-bottom:none;}
+  .mobile-menu .btn{margin-top:14px;width:100%;}
+
+  /* Hero */
+  .hero{padding:80px 0 90px;text-align:center;position:relative;z-index:1;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(91,140,255,0.1);border:1px solid rgba(91,140,255,0.3);
+    color:var(--accent);font-size:13px;font-weight:600;
+    padding:7px 16px;border-radius:100px;margin-bottom:26px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .hero h1{
+    font-size:clamp(32px,5.2vw,56px);font-weight:800;line-height:1.12;
+    letter-spacing:-1.5px;max-width:860px;margin:0 auto 20px;
+  }
+  .hero h1 .grad{background:var(--accent-grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p{
+    font-size:17.5px;color:var(--text-dim);max-width:620px;margin:0 auto 34px;
+  }
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+  .hero-note{font-size:13px;color:var(--text-faint);}
+  .hero-outcome{font-size:14px;color:var(--text-dim);max-width:600px;margin:14px auto 0;}
+
+  .hero-visual{
+    max-width:1040px;margin:56px auto 0;
+    background:var(--bg-card);border:1px solid var(--border);
+    border-radius:18px;padding:6px;
+    box-shadow:0 40px 100px -20px rgba(0,0,0,0.6);
+  }
+
+  /* Dashboard mockup */
+  .dash-card{background:var(--bg-alt);border-radius:14px;padding:28px;text-align:left;}
+  .dash-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px;}
+  .dash-title{font-weight:700;font-size:15px;}
+  .dash-title span{color:var(--text-faint);font-weight:400;}
+  .dash-range{font-size:12px;color:var(--text-faint);background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:5px 12px;}
+  .dash-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:22px;}
+  .dash-kpi{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px;}
+  .dash-kpi-label{font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:6px;}
+  .dash-kpi-value{font-size:17px;font-weight:800;}
+  .dash-kpi.risk .dash-kpi-value{color:var(--amber);}
+  .dash-kpi.good .dash-kpi-value{color:var(--green);}
+  .dash-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;}
+  .dash-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:680px;}
+  .dash-table th{text-align:left;padding:10px 14px;background:var(--bg-card);color:var(--text-faint);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:0.4px;border-bottom:1px solid var(--border);}
+  .dash-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-dim);white-space:nowrap;}
+  .dash-table tr:last-child td{border-bottom:none;}
+  .status-pill{display:inline-block;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;}
+  .status-pill.risk{background:rgba(239,130,100,0.15);color:var(--red);}
+  .status-pill.pending{background:rgba(224,160,48,0.15);color:var(--amber);}
+  .status-pill.good{background:rgba(55,211,153,0.15);color:var(--green);}
+  .dash-caption{text-align:center;font-size:12px;color:var(--text-faint);margin-top:18px;}
+
+  /* Role strip */
+  .logos-section{padding:44px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .logos-section p{text-align:center;font-size:13px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:26px;}
+  .logo-row{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;}
+  .logo-row span{
+    font-weight:600;font-size:13.5px;color:var(--text-dim);letter-spacing:0.2px;
+    background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:9px 18px;
+  }
+
+  /* Section heading */
+  .section-head{text-align:center;max-width:700px;margin:0 auto 48px;}
+  .eyebrow{color:var(--accent);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:14px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:14px;}
+  .section-head p{color:var(--text-dim);font-size:15.5px;}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:26px;transition:border-color .2s,transform .2s;
+  }
+  .card:hover{border-color:rgba(91,140,255,0.4);transform:translateY(-3px);}
+  .icon-box{
+    width:40px;height:40px;border-radius:10px;
+    background:rgba(91,140,255,0.12);border:1px solid rgba(91,140,255,0.25);
+    display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;
+  }
+  .card h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+  .card p{color:var(--text-dim);font-size:13.5px;}
+
+  /* How it works */
+  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:step;}
+  .step{position:relative;padding:24px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);}
+  .step-num{
+    counter-increment:step;
+    width:34px;height:34px;border-radius:50%;
+    background:var(--accent-grad);color:#fff;font-weight:800;font-size:14px;
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+  .step-num::before{content:counter(step);}
+  .step h3{font-size:14.5px;font-weight:700;margin-bottom:7px;}
+  .step p{font-size:12.5px;color:var(--text-dim);}
+
+  /* Flow chips (reused across Controls, Multi-Country) */
+  .flow-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;}
+  .flow-chip{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:100px;
+    padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-dim);white-space:nowrap;
+  }
+  .flow-chip.accent{border-color:var(--accent);color:var(--text);background:rgba(91,140,255,0.12);}
+  .flow-chip.risk{border-color:var(--amber);color:var(--amber);background:rgba(224,160,48,0.12);}
+  .flow-arrow{color:var(--text-faint);font-size:16px;}
+  .flow-caption{text-align:center;font-size:12.5px;color:var(--text-faint);margin-top:22px;max-width:600px;margin-left:auto;margin-right:auto;}
+
+  /* 3-way control diagram */
+  .control-diagram{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;margin-bottom:36px;}
+  .control-node{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px 26px;font-weight:700;font-size:14px;text-align:center;}
+  .control-check{font-size:12px;color:var(--green);font-weight:600;text-align:center;max-width:150px;}
+  .channel-label{text-align:center;font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.8px;margin:32px 0 14px;}
+  .channel-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  .channel-chip{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:12.5px;font-weight:600;color:var(--text-dim);}
+
+  /* Matching intelligence */
+  .match-ladder{max-width:660px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+  .match-level{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;padding:16px 22px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;}
+  .match-level.risk{border-left-color:var(--amber);}
+  .match-level-tag{font-weight:700;font-size:13px;min-width:180px;}
+  .match-level-rule{color:var(--text-dim);font-size:12.5px;flex:1;min-width:180px;}
+  .match-level-outcome{font-weight:700;font-size:12.5px;white-space:nowrap;}
+  .match-level-outcome.good{color:var(--green);}
+  .match-level-outcome.pending{color:var(--amber);}
+  .match-level-outcome.risk{color:var(--red);}
+
+  /* Aging / ownership */
+  .aging-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:36px 0 32px;}
+  .aging-card{text-align:center;}
+  .aging-card.risk{border-color:var(--amber);}
+  .aging-range{font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+  .aging-count{font-size:24px;font-weight:800;margin-bottom:4px;}
+  .aging-value{font-size:12.5px;color:var(--text-dim);}
+  .aging-card.risk .aging-count{color:var(--amber);}
+  .ownership-label{text-align:center;font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;}
+  .ownership-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  .ownership-chip{
+    display:flex;align-items:center;gap:8px;
+    background:var(--bg-card);border:1px solid var(--border);border-radius:100px;
+    padding:9px 16px;font-size:13px;font-weight:600;color:var(--text-dim);
+  }
+
+  /* Example record cards (governance / exception) */
+  .rec-card{max-width:600px;margin:28px auto 0;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:8px 28px;}
+  .rec-card-title{font-size:13px;font-weight:700;color:var(--text);padding:16px 0 4px;}
+  .rec-row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--border);font-size:13.5px;}
+  .rec-row:last-child{border-bottom:none;}
+  .rec-label{color:var(--text-faint);font-weight:600;}
+  .rec-value{color:var(--text);text-align:right;}
+  .rec-caption{text-align:center;font-size:12px;color:var(--text-faint);margin-top:18px;}
+
+  /* Sample tag */
+  .sample-tag-wrap{text-align:center;margin-bottom:26px;}
+  .sample-tag{
+    display:inline-block;background:rgba(224,160,48,0.12);border:1px solid rgba(224,160,48,0.35);
+    color:var(--amber);font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;
+  }
+
+  /* CFO waterfall */
+  .waterfall-box{max-width:780px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:38px;}
+  .waterfall-row{display:grid;grid-template-columns:180px 1fr 120px;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--border);}
+  .waterfall-row:last-child{border-bottom:none;}
+  .waterfall-label{font-size:13px;color:var(--text-dim);font-weight:600;}
+  .waterfall-track{background:var(--bg-alt);border-radius:6px;height:9px;overflow:hidden;}
+  .waterfall-fill{height:100%;background:var(--accent-grad);border-radius:6px;}
+  .waterfall-fill.risk{background:linear-gradient(135deg,var(--amber),var(--red));}
+  .waterfall-value{font-size:13px;font-weight:700;text-align:right;}
+  .waterfall-value.risk{color:var(--amber);}
+  .waterfall-caption{text-align:center;font-size:12px;color:var(--text-faint);margin-top:22px;}
+  .sub-head{text-align:center;font-size:13px;font-weight:700;color:var(--text);margin:44px 0 18px;text-transform:uppercase;letter-spacing:0.6px;}
+  .sub-head:first-of-type{margin-top:0;}
+  .recovery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:780px;margin:0 auto;}
+  .recovery-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;}
+  .recovery-card.risk{border-color:var(--amber);}
+  .recovery-label{font-size:11.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px;}
+  .recovery-value{font-size:19px;font-weight:800;}
+  .recovery-card.risk .recovery-value{color:var(--amber);}
+  .recovery-card.good .recovery-value{color:var(--green);}
+
+  /* Pricing / Deployment */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch;}
+  .price-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:30px;display:flex;flex-direction:column;
+  }
+  .price-card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 20px 60px -20px rgba(91,140,255,0.4);position:relative;}
+  .price-tag{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:var(--accent-grad);color:#fff;font-size:11px;font-weight:700;
+    padding:5px 14px;border-radius:100px;letter-spacing:0.4px;
+  }
+  .price-card h3{font-size:16.5px;font-weight:700;margin-bottom:6px;}
+  .price-card .desc{font-size:13px;color:var(--text-faint);margin-bottom:20px;min-height:36px;}
+  .price-amount{font-size:18px;font-weight:800;margin-bottom:4px;color:var(--text-dim);}
+  .price-card ul{list-style:none;margin:18px 0 26px;flex:1;}
+  .price-card li{font-size:13.5px;color:var(--text-dim);padding:7px 0;padding-left:22px;position:relative;}
+  .price-card li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800;}
+
+  /* Demo form */
+  .demo-box{
+    max-width:840px;margin:0 auto;
+    background:var(--bg-card);border:1px solid var(--border);border-radius:20px;
+    padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:38px;
+  }
+  .demo-left h2{font-size:24px;font-weight:800;margin-bottom:14px;letter-spacing:-0.5px;}
+  .demo-left p{color:var(--text-dim);font-size:14px;margin-bottom:18px;}
+  .demo-left ul{list-style:none;}
+  .demo-left li{font-size:13px;color:var(--text-dim);padding:6px 0;padding-left:22px;position:relative;}
+  .demo-left li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800;}
+  .form-group{margin-bottom:13px;}
+  .form-group label{display:block;font-size:12px;color:var(--text-faint);margin-bottom:6px;font-weight:600;}
+  .form-group input,.form-group select,.form-group textarea{
+    width:100%;background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;
+    padding:11px 13px;color:var(--text);font-size:14px;font-family:inherit;
+  }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .demo-right .btn{width:100%;margin-top:4px;}
+  .form-fallback{font-size:12px;color:var(--text-faint);margin-top:12px;text-align:center;}
+
+  /* CTA banner */
+  .cta-banner{padding:100px 0;text-align:center;}
+  .cta-banner-inner{
+    background:var(--accent-grad);border-radius:24px;padding:60px 40px;
+    position:relative;overflow:hidden;
+  }
+  .cta-banner-inner h2{font-size:clamp(24px,3.2vw,36px);font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-0.5px;}
+  .cta-banner-inner p{color:rgba(255,255,255,0.9);font-size:15.5px;margin-bottom:30px;}
+  .cta-banner .btn-primary{background:#fff;color:#1a2b5c;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
+  .cta-banner .btn-ghost{border-color:rgba(255,255,255,0.4);color:#fff;}
+
+  /* Footer */
+  footer{padding:56px 0 30px;border-top:1px solid var(--border);}
+  .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px;margin-bottom:44px;}
+  .footer-col h4{font-size:13px;font-weight:700;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:16px;}
+  .footer-col a{display:block;font-size:14px;color:var(--text-dim);margin-bottom:11px;transition:color .2s;}
+  .footer-col a:hover{color:var(--text);}
+  .footer-brand p{color:var(--text-dim);font-size:13.5px;margin-top:12px;max-width:300px;}
+  .footer-bottom{
+    padding-top:24px;border-top:1px solid var(--border);
+    font-size:13px;color:var(--text-faint);
+  }
+
+  /* Responsive */
+  @media(max-width:960px){
+    .dash-kpis{grid-template-columns:repeat(3,1fr);}
+  }
+  @media(max-width:900px){
+    .grid-3,.price-grid,.grid-4,.aging-grid,.recovery-grid{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:720px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .grid-3,.price-grid,.footer-grid,.steps,.grid-4,.aging-grid,.recovery-grid{grid-template-columns:1fr;}
+    .dash-kpis{grid-template-columns:1fr 1fr;}
+    .demo-box{grid-template-columns:1fr;padding:30px 20px;}
+    .form-row{grid-template-columns:1fr;}
+    .hero{padding:50px 0 56px;}
+    .sec{padding:70px 0;}
+    .cta-banner-inner{padding:40px 22px;}
+    .waterfall-row{grid-template-columns:1fr;gap:6px;text-align:left;}
+    .waterfall-value{text-align:left;}
+    .rec-row{flex-direction:column;gap:4px;}
+    .rec-value{text-align:left;}
+    .match-level{flex-direction:column;align-items:flex-start;}
+  }
+
+/* V6 finance-control additions */
+.finance-controls{padding:100px 0}
+.fin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.fin-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.fin-card h3{font-size:15.5px;margin-bottom:8px}
+.fin-card p{font-size:13px;color:var(--text-dim)}
+.fin-math{margin-top:16px;padding:12px;border-radius:9px;background:var(--bg-alt);border:1px solid var(--border);font-size:12px;color:var(--text-dim)}
+.fin-math strong{color:var(--text)}
+.carry-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+.carry-item{padding:16px;border-radius:12px;background:var(--bg-card);border:1px solid var(--border)}
+.carry-item small{display:block;color:var(--text-faint);font-size:10px;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
+.carry-item strong{font-size:14px}
+.source-control{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.source-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.source-card h3{font-size:16px;margin-bottom:10px}
+.source-list{display:grid;gap:9px;margin-top:14px}
+.source-list div{padding:10px 12px;background:var(--bg-alt);border:1px solid var(--border);border-radius:9px;font-size:12.5px;color:var(--text-dim)}
+@media(max-width:900px){.fin-grid,.carry-strip{grid-template-columns:1fr 1fr}.source-control{grid-template-columns:1fr}}
+@media(max-width:620px){.fin-grid,.carry-strip{grid-template-columns:1fr}}
+
+/* V7 finance intelligence additions */
+.intel-section{padding:100px 0}
+.intel-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.scorecard,.brief-card,.priority-card,.audit-pack,.health-check{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:26px
+}
+.scorecard h3,.brief-card h3,.priority-card h3,.audit-pack h3,.health-check h3{font-size:18px;margin-bottom:8px}
+.scorecard p,.brief-card p,.priority-card p,.audit-pack p,.health-check p{font-size:13.5px;color:var(--text-dim)}
+.provider-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px}
+.provider-table th,.provider-table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
+.provider-table th{font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.4px}
+.provider-table td{color:var(--text-dim)}
+.confidence{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.confidence div{padding:14px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--border)}
+.confidence small{display:block;color:var(--text-faint);font-size:10px;margin-bottom:5px}
+.confidence strong{font-size:18px}
+.brief-list{display:grid;gap:9px;margin-top:16px}
+.brief-item{padding:12px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--border);font-size:12.5px;color:var(--text-dim)}
+.brief-item b{color:var(--text)}
+.priority-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.priority-box{padding:14px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--border);text-align:center}
+.priority-box small{display:block;color:var(--text-faint);font-size:10px;margin-bottom:5px}
+.priority-box strong{font-size:15px}
+.priority-box.high{border-color:rgba(239,130,100,.55)}
+.priority-box.high strong{color:var(--red)}
+.priority-box.med{border-color:rgba(224,160,48,.45)}
+.priority-box.med strong{color:var(--amber)}
+.audit-list{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:16px}
+.audit-list div{padding:11px;border-radius:9px;background:var(--bg-alt);border:1px solid var(--border);font-size:12px;color:var(--text-dim)}
+.health-check{background:linear-gradient(135deg,rgba(91,140,255,.12),rgba(124,92,255,.08));border-color:rgba(91,140,255,.3)}
+.health-check .hc-grid{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.health-check ul{margin:14px 0 0 18px;color:var(--text-dim);font-size:13px}
+.health-check li{margin:5px 0}
+@media(max-width:900px){
+  .intel-grid{grid-template-columns:1fr}
+  .priority-grid{grid-template-columns:1fr 1fr}
+  .health-check .hc-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .confidence,.priority-grid,.audit-list{grid-template-columns:1fr}
+}
+
+  /* Cross-product navigation */
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-toggle{
+    display:flex;align-items:center;gap:5px;color:var(--text-dim);
+    font-size:13.5px;font-weight:500;cursor:pointer;
+  }
+  .nav-dropdown-toggle:hover{color:var(--text);}
+  .nav-dropdown-menu{
+    position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+    min-width:220px;background:var(--bg-card);border:1px solid var(--border);
+    border-radius:12px;padding:8px;box-shadow:0 18px 50px rgba(0,0,0,.38);
+    opacity:0;visibility:hidden;pointer-events:none;transition:all .18s ease;z-index:200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu{
+    opacity:1;visibility:visible;pointer-events:auto;
+  }
+  .nav-dropdown-menu a{
+    display:block;padding:10px 12px;border-radius:8px;color:var(--text-dim);
+    font-size:13px;white-space:nowrap;
+  }
+  .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--text);}
+
+
+  /* Always-visible cross-product switcher */
+  .product-switcher{
+    background:var(--bg-alt);
+    border-bottom:1px solid var(--border);
+    padding:10px 0;
+  }
+  .product-switcher .wrap{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .product-switcher a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    color:var(--text-dim);
+    font-size:12.5px;
+    font-weight:600;
+    background:var(--bg-card);
+    transition:all .2s;
+  }
+  .product-switcher a:hover{
+    color:var(--text);
+    border-color:var(--accent);
+    transform:translateY(-1px);
+  }
+  .product-switcher a.active{
+    color:#fff;
+    border-color:var(--accent);
+    background:var(--accent-grad);
+  }
+
+</style>
+
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap"><a href="https://brsrinimur-rgb.github.io/ahenqor-website/">AHENQOR Technologies</a> <span class="crumb-sep">›</span> <a href="https://brsrinimur-rgb.github.io/ahenqor-website/#products">Products</a> <span class="crumb-sep">›</span> <strong>RetailRecon AI</strong></div>
+</div>
+
+<header>
+  <nav>
+    <a class="logo" href="https://brsrinimur-rgb.github.io/ahenqor-website/">
+      <div class="logo-mark">A</div>
+      AHENQOR<span class="logo-sub">RetailRecon AI</span>
+    </a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-toggle" tabindex="0">Products ▾</span>
+        <div class="nav-dropdown-menu">
+          <a href="https://brsrinimur-rgb.github.io/ahenqor-website/retailrecon-ai/">RetailRecon AI</a>
+          <a href="https://brsrinimur-rgb.github.io/ahenqor-website/merchandiser-ai.html">Merchandiser AI</a>
+          <a href="https://brsrinimur-rgb.github.io/ahenqor-website/hotel-control-tower.html">Hotel Control Tower</a>
+        </div>
+      </div>
+      <a href="#dashboard">Product</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#controls">Controls</a>
+      <a href="#cfo-view">CFO View</a>
+      <a href="#deployment">Deployment</a>
+      <a href="#demo">Demo</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#demo" class="btn btn-primary">Request Demo</a>
+    </div>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="https://brsrinimur-rgb.github.io/ahenqor-website/retailrecon-ai/">RetailRecon AI</a>
+    <a href="https://brsrinimur-rgb.github.io/ahenqor-website/merchandiser-ai.html">Merchandiser AI</a>
+    <a href="https://brsrinimur-rgb.github.io/ahenqor-website/hotel-control-tower.html">Hotel Control Tower</a>
+    <a href="#dashboard">Product</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#controls">Controls</a>
+    <a href="#cfo-view">CFO View</a>
+    <a href="#deployment">Deployment</a>
+    <a href="#demo">Demo</a>
+  </div>
+</header>
+
+<div class="product-switcher">
+  <div class="wrap">
+    <a class="active" href="https://brsrinimur-rgb.github.io/ahenqor-website/retailrecon-ai/">RetailRecon AI</a>
+    <a class="" href="https://brsrinimur-rgb.github.io/ahenqor-website/merchandiser-ai.html">Merchandiser AI</a>
+    <a class="" href="https://brsrinimur-rgb.github.io/ahenqor-website/hotel-control-tower.html">Hotel Control Tower</a>
+  </div>
+</div>
+
+
+<section class="hero">
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> For CFOs, Finance Controllers & Treasury Teams</div>
+    <div class="eyebrow" style="margin-bottom:12px;">AI-Powered Retail Financial Control</div><h1>Know what was sold. What settled. <span class="grad">What’s still at risk.</span></h1>
+    <p>Reconcile Store Tender, POS, Bank and BNPL. Identify SAR at risk. Assign exceptions. Recover missing settlements. Close with confidence.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn btn-primary btn-lg">Request Product Demo</a>
+      <a href="#how-it-works" class="btn btn-ghost btn-lg">See How It Works</a>
+    </div>
+    <div class="hero-note">Request a working product demo — no commitment required.</div>
+    <p class="hero-outcome">Know what was expected, what was received, what settled, what remains at risk, and what is ready to post.</p>
+
+    <div class="hero-visual" id="dashboard">
+      <div class="dash-card">
+        <div class="dash-topbar">
+          <div class="dash-title">RetailRecon <span>Control Center</span></div>
+          <div class="dash-range">This Week</div>
+        </div>
+        <div class="dash-kpis">
+          <div class="dash-kpi"><div class="dash-kpi-label">Expected</div><div class="dash-kpi-value">SAR 2.7M</div></div>
+          <div class="dash-kpi"><div class="dash-kpi-label">Settled</div><div class="dash-kpi-value">SAR 2.61M</div></div>
+          <div class="dash-kpi risk"><div class="dash-kpi-label">At Risk</div><div class="dash-kpi-value">SAR 68K</div></div>
+          <div class="dash-kpi"><div class="dash-kpi-label">Open Exceptions</div><div class="dash-kpi-value">23</div></div>
+          <div class="dash-kpi risk"><div class="dash-kpi-label">Outside SLA</div><div class="dash-kpi-value">7</div></div>
+          <div class="dash-kpi good"><div class="dash-kpi-label">Reconciled</div><div class="dash-kpi-value">94.8%</div></div>
+        </div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead>
+              <tr><th>Store</th><th>Provider</th><th>Expected</th><th>Settled</th><th>Difference</th><th>Age</th><th>Owner</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>613</td><td>ANB</td><td>SAR 18,420</td><td>SAR 0</td><td>SAR 18,420</td><td>T+3</td><td>Treasury</td><td><span class="status-pill risk">Escalated</span></td></tr>
+              <tr><td>207</td><td>MADA</td><td>SAR 9,150</td><td>SAR 8,900</td><td>SAR 250</td><td>T+1</td><td>Store Team</td><td><span class="status-pill pending">In Review</span></td></tr>
+              <tr><td>442</td><td>Tabby</td><td>SAR 6,300</td><td>SAR 6,300</td><td>SAR 0</td><td>T+0</td><td>Finance</td><td><span class="status-pill good">Matched</span></td></tr>
+              <tr><td>108</td><td>Tamara</td><td>SAR 4,760</td><td>SAR 4,110</td><td>SAR 650</td><td>T+5</td><td>Provider / Bank</td><td><span class="status-pill risk">Awaiting Response</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dash-caption">Illustrative Control Center view — sample data, not a live client environment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="logos-section">
+  <div class="wrap">
+    <p>Built for finance & treasury teams responsible for</p>
+    <div class="logo-row">
+      <span>Store Tender Control</span>
+      <span>POS & Bank Reconciliation</span>
+      <span>BNPL Settlement</span>
+      <span>SAR-at-Risk Exposure</span>
+      <span>JV & D365 Posting Control</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="how-it-works">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How It Works</div>
+      <h2>From store tender to close, in five steps</h2>
+      <p>A structured reconciliation and recovery workflow built for finance teams, not another dashboard to interpret.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <h3>Upload / Connect</h3>
+        <p>D365 Store Tender, POS, bank and BNPL statements — uploaded or connected directly.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <h3>Reconcile</h3>
+        <p>Match on auth code, amount and tolerance; flag duplicates and settlement lifecycle gaps.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <h3>Investigate</h3>
+        <p>Identify missing settlement, duplicates, timing differences and mismatches.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <h3>Act & Recover</h3>
+        <p>Assign an owner, collect evidence, follow up, and verify recovery.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <h3>Close & Post</h3>
+        <p>Approve transactions, create the JV, control the period, and prepare approved JV batches for D365.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="controls">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Bank Settlement Control</div>
+      <h2>Verify every settlement, three ways</h2>
+      <p>The core control behind RetailRecon AI — matching what a store recorded, what the provider processed, and what the bank actually settled.</p>
+    </div>
+    <div class="control-diagram">
+      <div class="control-node">Store Tender</div>
+      <div class="control-check">✓ matched on amount, auth code & timing</div>
+      <div class="control-node">Provider / POS</div>
+      <div class="control-check">✓ matched on settlement reference</div>
+      <div class="control-node">Bank Settlement</div>
+    </div>
+    <div class="channel-label">Channels covered</div>
+    <div class="channel-row">
+      <span class="channel-chip">MADA</span>
+      <span class="channel-chip">Visa</span>
+      <span class="channel-chip">Mastercard</span>
+      <span class="channel-chip">AMEX</span>
+      <span class="channel-chip">Tabby</span>
+      <span class="channel-chip">Tamara</span>
+      <span class="channel-chip">Tap</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Matching Intelligence</div>
+      <h2>Not just totals — line-by-line matching logic</h2>
+      <p>Every transaction is matched at one of three confidence levels before anything is treated as an exception.</p>
+    </div>
+    <div class="match-ladder">
+      <div class="match-level">
+        <div class="match-level-tag">Level 1 — Auto Match</div>
+        <div class="match-level-rule">Auth Code + Exact Amount</div>
+        <div class="match-level-outcome good">→ Matched</div>
+      </div>
+      <div class="match-level">
+        <div class="match-level-tag">Level 2 — Tolerance Match</div>
+        <div class="match-level-rule">Auth Code + Difference ≤ SAR 1</div>
+        <div class="match-level-outcome pending">→ Matched / Approval Rule</div>
+      </div>
+      <div class="match-level">
+        <div class="match-level-tag">Level 3 — Review</div>
+        <div class="match-level-rule">Auth Code + Closest Amount</div>
+        <div class="match-level-outcome pending">→ Finance Review</div>
+      </div>
+      <div class="match-level risk">
+        <div class="match-level-tag">No Match</div>
+        <div class="match-level-rule">No corresponding record found</div>
+        <div class="match-level-outcome risk">→ Exception Case</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">AI Finance Action Engine</div>
+      <h2>Exceptions, detected, owned, and closed out</h2>
+      <p>Every unmatched item moves through a defined lifecycle — nothing sits unassigned in a spreadsheet.</p>
+    </div>
+    <div class="flow-row">
+      <span class="flow-chip">Detect</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Understand</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Assign</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip accent">Act</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Verify</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Close</span>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-card-title">Example: SAR 18,420 settlement missing</div>
+      <div class="rec-row"><div class="rec-label">Store</div><div class="rec-value">613</div></div>
+      <div class="rec-row"><div class="rec-label">Provider</div><div class="rec-value">ANB</div></div>
+      <div class="rec-row"><div class="rec-label">Age</div><div class="rec-value">T+3</div></div>
+      <div class="rec-row"><div class="rec-label">Likely Cause</div><div class="rec-value">Settlement delay</div></div>
+      <div class="rec-row"><div class="rec-label">Owner</div><div class="rec-value">Treasury</div></div>
+      <div class="rec-row"><div class="rec-label">Action</div><div class="rec-value">Bank follow-up</div></div>
+      <div class="rec-row"><div class="rec-label">Evidence</div><div class="rec-value">POS + Bank statement</div></div>
+      <div class="rec-row"><div class="rec-label">Status</div><div class="rec-value">Awaiting settlement</div></div>
+    </div>
+    <div class="rec-caption">Sample exception — illustrative, not a real transaction.</div>
+
+    <div class="aging-grid">
+      <div class="card aging-card">
+        <div class="aging-range">0–1 day</div>
+        <div class="aging-count">10</div>
+        <div class="aging-value">SAR 18,000</div>
+      </div>
+      <div class="card aging-card">
+        <div class="aging-range">2–3 days</div>
+        <div class="aging-count">7</div>
+        <div class="aging-value">SAR 20,000</div>
+      </div>
+      <div class="card aging-card">
+        <div class="aging-range">4–7 days</div>
+        <div class="aging-count">4</div>
+        <div class="aging-value">SAR 15,000</div>
+      </div>
+      <div class="card aging-card risk">
+        <div class="aging-range">7+ days</div>
+        <div class="aging-count">2</div>
+        <div class="aging-value">SAR 15,000</div>
+      </div>
+    </div>
+    <div class="rec-caption">Illustrative aging view — 23 open exceptions totaling SAR 68K, aligned to the Control Center above.</div>
+    <div class="ownership-label">Exceptions route to</div>
+    <div class="ownership-row">
+      <span class="ownership-chip">🏬 Store Team</span>
+      <span class="ownership-chip">🏦 Treasury</span>
+      <span class="ownership-chip">📊 Finance</span>
+      <span class="ownership-chip">🔌 Provider / Bank</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Control Architecture</div>
+      <h2>Maker, checker, approver — nothing posts unchecked</h2>
+      <p>Segregation of duties and a locked period, all the way through to D365.</p>
+    </div>
+    <div class="flow-row">
+      <span class="flow-chip">Maker</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Checker</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Approver</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip risk">Period Lock</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">JV</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip accent">D365</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Audit Trail</span>
+    </div>
+    <div class="flow-caption"><strong>D365 Posting Control:</strong> approved JV batches are prepared for D365, with direct posting integration on the product roadmap — not yet live in production.</div>
+
+    <div class="channel-label" style="margin-top:36px;">Governance controls</div>
+    <div class="channel-row">
+      <span class="channel-chip">Role-Based Access</span>
+      <span class="channel-chip">Evidence</span>
+      <span class="channel-chip">Original Values</span>
+      <span class="channel-chip">Correction History</span>
+      <span class="channel-chip">Approval Timestamp</span>
+      <span class="channel-chip">Period Lock</span>
+      <span class="channel-chip">Duplicate Posting Protection</span>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-card-title">Example correction record</div>
+      <div class="rec-row"><div class="rec-label">Original Value</div><div class="rec-value">SAR 4,250.00</div></div>
+      <div class="rec-row"><div class="rec-label">Corrected Value</div><div class="rec-value">SAR 4,180.00</div></div>
+      <div class="rec-row"><div class="rec-label">Reason</div><div class="rec-value">Duplicate settlement entry</div></div>
+      <div class="rec-row"><div class="rec-label">Approver</div><div class="rec-value">Finance Controller</div></div>
+      <div class="rec-row"><div class="rec-label">Evidence</div><div class="rec-value">Bank statement excerpt attached</div></div>
+      <div class="rec-row"><div class="rec-label">Timestamp</div><div class="rec-value">Aug 5, 2026 · 14:32</div></div>
+    </div>
+    <div class="rec-caption">Sample record — illustrative, not a real transaction.</div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Multi-Country Architecture</div>
+      <h2>Built for groups, not a single store</h2>
+      <p>One data model spanning every entity, currency and payment provider in the group.</p>
+    </div>
+    <div class="flow-row">
+      <span class="flow-chip">Company</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Country</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Legal Entity</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Store</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Payment Provider</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip">Bank</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-chip accent">GL</span>
+    </div>
+    <div class="channel-label" style="margin-top:36px;">Designed for</div>
+    <div class="channel-row">
+      <span class="channel-chip">Multi-Country</span>
+      <span class="channel-chip">Multi-Entity</span>
+      <span class="channel-chip">Multi-Currency</span>
+      <span class="channel-chip">Configurable GL Mapping</span>
+      <span class="channel-chip">Local Close Calendars</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="finance-controls">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Settlement Accounting</div>
+      <h2>Reconcile gross sales to the actual bank amount</h2>
+      <p>Finance teams need more than a matched transaction. RetailRecon can separate gross sales, commission, VAT and net settlement so the accounting result is explainable.</p>
+    </div>
+    <div class="fin-grid">
+      <div class="fin-card">
+        <h3>Gross Sales</h3>
+        <p>Start from the approved Store Tender / provider transaction value.</p>
+        <div class="fin-math"><strong>SAR 100,000</strong><br>Expected gross card sales</div>
+      </div>
+      <div class="fin-card">
+        <h3>Commission</h3>
+        <p>Apply configured provider / card commission rules by payment type and effective date.</p>
+        <div class="fin-math"><strong>− SAR 1,550</strong><br>Illustrative commission</div>
+      </div>
+      <div class="fin-card">
+        <h3>VAT on Commission</h3>
+        <p>Track VAT charged on provider fees separately for accounting and reconciliation.</p>
+        <div class="fin-math"><strong>− SAR 232.50</strong><br>Illustrative VAT</div>
+      </div>
+      <div class="fin-card">
+        <h3>Net Settlement</h3>
+        <p>Compare the expected net amount against the actual bank settlement received.</p>
+        <div class="fin-math"><strong>SAR 98,217.50</strong><br>Expected net settlement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Refunds, Chargebacks & Late Settlement</div>
+      <h2>Keep open items alive until the finance story is complete</h2>
+      <p>Refunds, chargebacks and delayed settlements should remain visible and controlled rather than disappearing when the accounting period changes.</p>
+    </div>
+    <div class="carry-strip">
+      <div class="carry-item"><small>Refunds</small><strong>Linked to original transaction</strong></div>
+      <div class="carry-item"><small>Chargebacks</small><strong>Tracked as a separate finance exception</strong></div>
+      <div class="carry-item"><small>Late Settlement</small><strong>Carried forward to the next open period</strong></div>
+      <div class="carry-item"><small>Recovery</small><strong>Closed only after settlement is verified</strong></div>
+    </div>
+    <div class="rec-card" style="margin-top:28px">
+      <div class="rec-card-title">Example: June transaction settled in July</div>
+      <div class="rec-row"><div class="rec-label">Transaction Date</div><div class="rec-value">30-Jun-2026</div></div>
+      <div class="rec-row"><div class="rec-label">Expected Settlement</div><div class="rec-value">Open at June close</div></div>
+      <div class="rec-row"><div class="rec-label">Actual Bank Settlement</div><div class="rec-value">02-Jul-2026</div></div>
+      <div class="rec-row"><div class="rec-label">Treatment</div><div class="rec-value">Carry forward → verify → close</div></div>
+    </div>
+    <div class="rec-caption">Illustrative control example.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Source File Controls</div>
+      <h2>Control the input before you trust the reconciliation</h2>
+      <p>RetailRecon should confirm that the source data is complete, unique and ready for matching before finance relies on any result.</p>
+    </div>
+    <div class="source-control">
+      <div class="source-card">
+        <h3>Completeness Control</h3>
+        <div class="source-list">
+          <div>Expected file received for the period</div>
+          <div>Required columns present</div>
+          <div>Transaction count and total value captured</div>
+          <div>Store / provider coverage checked</div>
+        </div>
+      </div>
+      <div class="source-card">
+        <h3>Duplicate & Integrity Control</h3>
+        <div class="source-list">
+          <div>Duplicate source file detection</div>
+          <div>Duplicate transaction / auth-code detection</div>
+          <div>Unique transaction ID control</div>
+          <div>Rejected / failed / void records handled separately</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="cfo-view">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The CFO View</div>
+      <h2>Where is your money?</h2>
+      <p>The question RetailRecon AI is built to answer, end to end — from expected sales to what's still at risk.</p>
+    </div>
+    <div class="sample-tag-wrap"><span class="sample-tag">Illustrative CFO Control View — Sample Data</span><div style="font-size:11.5px;color:var(--text-faint);margin-top:10px;">A simplified SAR 100,000 walkthrough example — separate from the Control Center dashboard figures above.</div></div>
+
+    <div class="sub-head">Settlement Lifecycle</div>
+    <div class="waterfall-box">
+      <div class="waterfall-row">
+        <div class="waterfall-label">Expected</div>
+        <div class="waterfall-track"><div class="waterfall-fill" style="width:100%"></div></div>
+        <div class="waterfall-value">SAR 100,000</div>
+      </div>
+      <div class="waterfall-row">
+        <div class="waterfall-label">Provider Received</div>
+        <div class="waterfall-track"><div class="waterfall-fill" style="width:97%"></div></div>
+        <div class="waterfall-value">SAR 97,400</div>
+      </div>
+      <div class="waterfall-row">
+        <div class="waterfall-label">Bank Settled</div>
+        <div class="waterfall-track"><div class="waterfall-fill" style="width:96%"></div></div>
+        <div class="waterfall-value">SAR 95,900</div>
+      </div>
+      <div class="waterfall-row">
+        <div class="waterfall-label">Reconciled</div>
+        <div class="waterfall-track"><div class="waterfall-fill" style="width:94%"></div></div>
+        <div class="waterfall-value">SAR 94,100</div>
+      </div>
+      <div class="waterfall-row">
+        <div class="waterfall-label">JV Created</div>
+        <div class="waterfall-track"><div class="waterfall-fill" style="width:94%"></div></div>
+        <div class="waterfall-value">SAR 94,100</div>
+      </div>
+      <div class="waterfall-row">
+        <div class="waterfall-label">D365 Posting — Roadmap</div>
+        <div class="waterfall-track"><div class="waterfall-fill" style="width:94%"></div></div>
+        <div class="waterfall-value">SAR 94,100</div>
+      </div>
+    </div>
+
+    <div class="sub-head">Exception Recovery</div>
+    <div class="recovery-grid">
+      <div class="recovery-card risk">
+        <div class="recovery-label">Opening SAR at Risk</div>
+        <div class="recovery-value">SAR 5,900</div>
+      </div>
+      <div class="recovery-card good">
+        <div class="recovery-label">Illustrative Walkthrough Recovery</div>
+        <div class="recovery-value">SAR 3,200</div>
+      </div>
+      <div class="recovery-card">
+        <div class="recovery-label">Pending</div>
+        <div class="recovery-value">SAR 1,900</div>
+      </div>
+      <div class="recovery-card risk">
+        <div class="recovery-label">Escalated</div>
+        <div class="recovery-value">SAR 800</div>
+      </div>
+    </div>
+    <div class="waterfall-caption">Bar lengths and figures are illustrative only, not drawn to scale and not client data.</div>
+  </div>
+</section>
+
+
+<section class="intel-section sec-alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Finance Intelligence</div>
+      <h2>See which provider, bank or store is creating the risk</h2>
+      <p>RetailRecon can turn reconciliation output into operational performance signals for Finance and Treasury.</p>
+    </div>
+
+    <div class="intel-grid">
+      <div class="scorecard">
+        <h3>Provider & Bank Performance Scorecard</h3>
+        <p>Compare settlement quality, delay and exception exposure by payment channel.</p>
+        <table class="provider-table">
+          <thead><tr><th>Provider</th><th>Match %</th><th>Avg Delay</th><th>Open Risk</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>MADA / ANB</td><td>98.7%</td><td>T+1.2</td><td>SAR 12.4K</td><td><span class="status-pill good">Healthy</span></td></tr>
+            <tr><td>Visa / MC</td><td>96.9%</td><td>T+1.8</td><td>SAR 18.7K</td><td><span class="status-pill pending">Watch</span></td></tr>
+            <tr><td>AMEX</td><td>94.1%</td><td>T+2.4</td><td>SAR 21.3K</td><td><span class="status-pill risk">Review</span></td></tr>
+            <tr><td>Tabby / Tamara</td><td>97.5%</td><td>T+2.0</td><td>SAR 9.8K</td><td><span class="status-pill pending">Monitor</span></td></tr>
+            <tr><td>Other / Remaining</td><td>—</td><td>—</td><td>SAR 5.8K</td><td><span class="status-pill pending">Monitor</span></td></tr>
+          </tbody>
+        </table>
+        <div class="rec-caption">Illustrative sample data — open risk totals SAR 68K, aligned to the Control Center.</div>
+      </div>
+
+      <div class="brief-card">
+        <h3>Daily CFO Finance Brief</h3>
+        <p>A short management summary of what changed and what needs attention.</p>
+        <div class="brief-list">
+          <div class="brief-item"><b>SAR at Risk:</b> SAR 68K across 23 open exceptions</div>
+          <div class="brief-item"><b>Outside SLA:</b> 7 cases require escalation</div>
+          <div class="brief-item"><b>Largest Exposure:</b> Store 613 · ANB · SAR 18,420</div>
+          <div class="brief-item"><b>Recovery this week:</b> SAR 31K <span style="color:var(--text-faint);">— Control Center total</span></div>
+          <div class="brief-item"><b>Close Status:</b> 94.8% reconciled; 3 stores require finance review</div>
+        </div>
+        <div class="rec-caption">Reflects this week's Control Center totals (see dashboard above) — the SAR 100,000 CFO View walkthrough below uses a separate, smaller illustrative example.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intel-section">
+  <div class="wrap">
+    <div class="intel-grid">
+      <div class="priority-card">
+        <h3>Exception Priority Matrix</h3>
+        <p>Prioritize by value, age, payment channel and close impact rather than reviewing every difference equally.</p>
+        <div class="priority-grid">
+          <div class="priority-box high"><small>HIGH VALUE + OLD</small><strong>Escalate Now</strong></div>
+          <div class="priority-box med"><small>HIGH VALUE + NEW</small><strong>Investigate</strong></div>
+          <div class="priority-box med"><small>LOW VALUE + OLD</small><strong>Review SLA</strong></div>
+          <div class="priority-box"><small>LOW VALUE + NEW</small><strong>Monitor</strong></div>
+        </div>
+      </div>
+
+      <div class="priority-card">
+        <h3>Reconciliation Confidence</h3>
+        <p>Show how much of the close is auto-matched, tolerance-matched, or still needs human review.</p>
+        <div class="confidence">
+          <div><small>AUTO MATCH</small><strong>88.6%</strong></div>
+          <div><small>TOLERANCE MATCH</small><strong>6.2%</strong></div>
+          <div><small>MANUAL REVIEW</small><strong>5.2%</strong></div>
+        </div>
+        <div class="rec-caption">Illustrative sample data.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intel-section sec-alt">
+  <div class="wrap">
+    <div class="intel-grid">
+      <div class="audit-pack">
+        <h3>Close & Audit Pack</h3>
+        <p>Prepare a finance-ready support package for management review and audit evidence.</p>
+        <div class="audit-list">
+          <div>Reconciliation summary</div>
+          <div>SAR-at-risk report</div>
+          <div>Exception aging</div>
+          <div>Recovery evidence</div>
+          <div>Correction history</div>
+          <div>Maker-checker approvals</div>
+          <div>JV support schedule</div>
+          <div>Period close status</div>
+        </div>
+      </div>
+
+      <div class="audit-pack">
+        <h3>Store & Finance Performance</h3>
+        <p>Track recurring issues so Finance can distinguish a one-off delay from a repeated control weakness.</p>
+        <div class="brief-list">
+          <div class="brief-item"><b>Store performance:</b> missing POS pushes, repeated auth issues, late submission</div>
+          <div class="brief-item"><b>Provider performance:</b> settlement delay, short settlement, duplicate records</div>
+          <div class="brief-item"><b>Finance performance:</b> case aging, approval time, recovery closure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intel-section">
+  <div class="wrap">
+    <div class="health-check">
+      <div class="hc-grid">
+        <div>
+          <div class="eyebrow">Retail Finance Health Check</div>
+          <h3>Start with your current reconciliation process</h3>
+          <p>Before a full deployment, AHENQOR can review the current workflow and identify where settlement risk, manual effort and control gaps exist.</p>
+          <ul>
+            <li>Source-file and data-quality review</li>
+            <li>POS / bank / BNPL reconciliation flow</li>
+            <li>Exception ownership and aging</li>
+            <li>Settlement delay and SAR-at-risk exposure</li>
+            <li>Close, JV and D365 readiness</li>
+          </ul>
+        </div>
+        <a href="#demo" class="btn btn-primary btn-lg">Request Health Check</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="demo">
+  <div class="wrap">
+    <div class="demo-box">
+      <div class="demo-left">
+        <h2>Request a working product demo</h2>
+        <p>Tell us about your reconciliation setup and someone from RetailRecon AI will follow up within one business day.</p>
+        <ul>
+          <li>Live walkthrough of the reconciliation workflow</li>
+          <li>Review of SAR-at-risk detection logic</li>
+          <li>JV preparation & D365 integration roadmap discussion</li>
+          <li>No commitment required</li>
+        </ul>
+      </div>
+      <div class="demo-right">
+        <form id="demoForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First name</label>
+              <input type="text" name="first" required>
+            </div>
+            <div class="form-group">
+              <label>Last name</label>
+              <input type="text" name="last" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Work email</label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="company" required>
+          </div>
+          <div class="form-group">
+            <label>Number of store locations</label>
+            <select name="stores">
+              <option>1–25</option>
+              <option>26–100</option>
+              <option>101–500</option>
+              <option>500+</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Request Demo</button>
+        </form>
+        <div class="form-fallback">Submitting opens your email client — this form isn't yet connected to a CRM. Prefer to just email us? Write to hello@ahenqor.com.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="deployment">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Deployment Options</div>
+      <h2>Start where it makes sense for your organization</h2>
+      <p>RetailRecon AI is early-stage — pricing is scoped per engagement rather than fixed into standard tiers.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Pilot / Proof of Value</h3>
+        <div class="desc">Test RetailRecon using representative client data.</div>
+        <div class="price-amount">Contact us for a commercial proposal</div>
+        <ul>
+          <li>Sample or representative data set</li>
+          <li>Core reconciliation engine</li>
+          <li>SAR-at-risk detection</li>
+          <li>Defined pilot scope & timeline</li>
+          <li>Findings & fit report</li>
+        </ul>
+        <a href="#demo" class="btn btn-ghost">Request a Pilot Conversation</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tag">Recommended Path</div>
+        <h3>Production Deployment</h3>
+        <div class="desc">Stores, users, master setup, UAT, training and go-live.</div>
+        <div class="price-amount">Contact us for a commercial proposal</div>
+        <ul>
+          <li>Full store & entity rollout</li>
+          <li>User roles & permissions</li>
+          <li>UAT & training</li>
+          <li>Go-live support</li>
+          <li>Standard integrations</li>
+        </ul>
+        <a href="#demo" class="btn btn-primary">Contact Us for a Commercial Proposal</a>
+      </div>
+      <div class="price-card">
+        <h3>Enterprise / Multi-Country</h3>
+        <div class="desc">Multiple legal entities, ERP integration, JV preparation, security and SLA.</div>
+        <div class="price-amount">Contact us for a commercial proposal</div>
+        <ul>
+          <li>Multi-entity / multi-country setup</li>
+          <li>JV preparation with D365 integration roadmap</li>
+          <li>SSO / role-based access</li>
+          <li>Dedicated support & SLA</li>
+          <li>Custom security review</li>
+        </ul>
+        <a href="#demo" class="btn btn-ghost">Contact Us for a Commercial Proposal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="wrap">
+    <div class="cta-banner-inner">
+      <h2>Ready to see where your money actually is?</h2>
+      <p>Request a working demo of RetailRecon AI's reconciliation and financial control engine.</p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn btn-primary btn-lg">Request Product Demo</a>
+        <a href="#deployment" class="btn btn-ghost btn-lg">View Deployment Options</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a class="logo" href="https://brsrinimur-rgb.github.io/ahenqor-website/">
+          <div class="logo-mark">A</div>
+          AHENQOR
+        </a>
+        <p>RetailRecon AI is a product of AHENQOR Technologies, helping retail finance and treasury teams reconcile settlements, identify risk, and close with confidence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#dashboard">Product</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#controls">Controls</a>
+        <a href="#cfo-view">CFO View</a>
+        <a href="#deployment">Deployment</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@ahenqor.com">hello@ahenqor.com</a>
+        <a href="#demo">Request Demo</a>
+        <a href="https://brsrinimur-rgb.github.io/ahenqor-website/">AHENQOR Company Home</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 AHENQOR Technologies. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuToggle.addEventListener('click', ()=>{
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.textContent = isOpen ? '✕' : '☰';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      mobileMenu.classList.remove('open');
+      menuToggle.textContent = '☰';
+    });
+  });
+
+  // Demo form — mailto fallback until a real CRM/email backend is connected
+  document.getElementById('demoForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const f = e.target;
+    const subject = encodeURIComponent('RetailRecon AI Demo Request — ' + f.company.value);
+    const body = encodeURIComponent(
+      'Name: ' + f.first.value + ' ' + f.last.value + '\n' +
+      'Work email: ' + f.email.value + '\n' +
+      'Company: ' + f.company.value + '\n' +
+      'Store locations: ' + f.stores.value
+    );
+    window.location.href = 'mailto:hello@ahenqor.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
