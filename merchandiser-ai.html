@@ -217,6 +217,30 @@
     .rec-row{flex-direction:column;gap:4px;}
     .rec-value{text-align:left;}
   }
+
+  /* Cross-product navigation */
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-toggle{
+    display:flex;align-items:center;gap:5px;color:var(--text-dim);
+    font-size:13.5px;font-weight:500;cursor:pointer;
+  }
+  .nav-dropdown-toggle:hover{color:var(--text);}
+  .nav-dropdown-menu{
+    position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+    min-width:220px;background:var(--bg-card);border:1px solid var(--border);
+    border-radius:12px;padding:8px;box-shadow:0 18px 50px rgba(0,0,0,.38);
+    opacity:0;visibility:hidden;pointer-events:none;transition:all .18s ease;z-index:200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu{
+    opacity:1;visibility:visible;pointer-events:auto;
+  }
+  .nav-dropdown-menu a{
+    display:block;padding:10px 12px;border-radius:8px;color:var(--text-dim);
+    font-size:13px;white-space:nowrap;
+  }
+  .nav-dropdown-menu a:hover{background:var(--bg-alt);color:var(--text);}
+
 </style>
 </head>
 <body>
@@ -232,6 +256,14 @@
       AHENQOR<span class="logo-sub">Merchandiser AI</span>
     </a>
     <div class="nav-links">
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-toggle" tabindex="0">Products ▾</span>
+        <div class="nav-dropdown-menu">
+          <a href="retailrecon-ai/">RetailRecon AI</a>
+          <a href="merchandiser-ai.html">Merchandiser AI</a>
+          <a href="hotel-control-tower.html">Hotel Control Tower</a>
+        </div>
+      </div>
       <a href="#dashboard">Product</a>
       <a href="#how-it-works">How It Works</a>
       <a href="#buying-intelligence">Buying Intelligence</a>
@@ -245,6 +277,9 @@
     <button class="menu-toggle" aria-label="Menu">☰</button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
+    <a href="retailrecon-ai/">RetailRecon AI</a>
+    <a href="merchandiser-ai.html">Merchandiser AI</a>
+    <a href="hotel-control-tower.html">Hotel Control Tower</a>
     <a href="#dashboard">Product</a>
     <a href="#how-it-works">How It Works</a>
     <a href="#buying-intelligence">Buying Intelligence</a>

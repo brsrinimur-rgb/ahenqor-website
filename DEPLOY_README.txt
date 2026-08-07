@@ -1,8 +1,7 @@
-AHENQOR TECHNOLOGIES — FINAL PRODUCTION WEBSITE
+AHENQOR FINAL WEBSITE — PRODUCT DROPDOWN UPDATE
 
-Deploy this entire folder as one unit.
+Deploy the entire folder together:
 
-Required structure:
 /
   index.html
   merchandiser-ai.html
@@ -11,8 +10,11 @@ Required structure:
   retailrecon-ai/
     index.html
 
-Important:
-- Do not flatten the retailrecon-ai folder.
-- retailrecon-ai/index.html uses ../index.html to return to the AHENQOR homepage.
-- ahenqor-home.html is a compatibility redirect to index.html.
-- Demo forms currently use mailto: links, not a server-side form/CRM endpoint.
+Update included:
+- Desktop Products dropdown on AHENQOR, RetailRecon AI, Merchandiser AI, and Hotel Control Tower.
+- Direct links to all three products in mobile menus.
+- Correct ../ relative paths preserved for RetailRecon AI.
+- Existing content and design otherwise unchanged.
+
+For GitHub:
+Upload/replace the four HTML pages above while preserving retailrecon-ai/index.html.
