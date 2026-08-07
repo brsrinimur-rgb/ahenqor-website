@@ -1,20 +1,20 @@
-AHENQOR FINAL WEBSITE — PRODUCT DROPDOWN UPDATE
+AHENQOR — GITHUB PAGES FIXED LINKS
 
-Deploy the entire folder together:
+This package uses explicit live URLs to avoid GitHub Pages project-path errors.
 
-/
-  index.html
-  merchandiser-ai.html
-  hotel-control-tower.html
-  ahenqor-home.html
-  retailrecon-ai/
-    index.html
+Homepage:
+https://brsrinimur-rgb.github.io/ahenqor-website/
 
-Update included:
-- Desktop Products dropdown on AHENQOR, RetailRecon AI, Merchandiser AI, and Hotel Control Tower.
-- Direct links to all three products in mobile menus.
-- Correct ../ relative paths preserved for RetailRecon AI.
-- Existing content and design otherwise unchanged.
+RetailRecon AI:
+https://brsrinimur-rgb.github.io/ahenqor-website/retailrecon-ai/
 
-For GitHub:
-Upload/replace the four HTML pages above while preserving retailrecon-ai/index.html.
+Merchandiser AI:
+https://brsrinimur-rgb.github.io/ahenqor-website/merchandiser-ai.html
+
+Hotel Control Tower:
+https://brsrinimur-rgb.github.io/ahenqor-website/hotel-control-tower.html
+
+Upload/replace the website files while preserving:
+retailrecon-ai/index.html
+
+After GitHub Pages redeploys, use Ctrl+F5 once to bypass browser cache.
