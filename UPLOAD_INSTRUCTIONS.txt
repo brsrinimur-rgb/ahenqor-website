@@ -1,0 +1,25 @@
+AHENQOR FINAL — CONSISTENT 3-PRODUCT NAVIGATION
+
+Upload this structure exactly:
+
+/
+  index.html
+  merchandiser-ai.html
+  hotel-control-tower.html
+  ahenqor-home.html
+  retailrecon-ai/
+    index.html
+
+Every product page now permanently shows:
+RetailRecon AI | Merchandiser AI | Hotel Control Tower
+
+The active product is highlighted.
+AHENQOR logo returns to:
+https://brsrinimur-rgb.github.io/ahenqor-website/
+
+Live URLs:
+RetailRecon AI: https://brsrinimur-rgb.github.io/ahenqor-website/retailrecon-ai/
+Merchandiser AI: https://brsrinimur-rgb.github.io/ahenqor-website/merchandiser-ai.html
+Hotel Control Tower: https://brsrinimur-rgb.github.io/ahenqor-website/hotel-control-tower.html
+
+After GitHub commit/deploy, press Ctrl+F5.
