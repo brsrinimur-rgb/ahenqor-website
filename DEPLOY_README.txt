@@ -1,20 +1,17 @@
-AHENQOR — GITHUB PAGES FIXED LINKS
+AHENQOR GITHUB PAGES — PRODUCT SWITCHER FIX
 
-This package uses explicit live URLs to avoid GitHub Pages project-path errors.
+This version adds an always-visible product switcher to:
+- AHENQOR homepage
+- RetailRecon AI
+- Merchandiser AI
+- Hotel Control Tower
 
-Homepage:
-https://brsrinimur-rgb.github.io/ahenqor-website/
+Live destinations:
+RetailRecon AI: https://brsrinimur-rgb.github.io/ahenqor-website/retailrecon-ai/
+Merchandiser AI: https://brsrinimur-rgb.github.io/ahenqor-website/merchandiser-ai.html
+Hotel Control Tower: https://brsrinimur-rgb.github.io/ahenqor-website/hotel-control-tower.html
 
-RetailRecon AI:
-https://brsrinimur-rgb.github.io/ahenqor-website/retailrecon-ai/
-
-Merchandiser AI:
-https://brsrinimur-rgb.github.io/ahenqor-website/merchandiser-ai.html
-
-Hotel Control Tower:
-https://brsrinimur-rgb.github.io/ahenqor-website/hotel-control-tower.html
-
-Upload/replace the website files while preserving:
+Upload/replace all website files while preserving:
 retailrecon-ai/index.html
 
-After GitHub Pages redeploys, use Ctrl+F5 once to bypass browser cache.
+After GitHub redeploys, press Ctrl+F5 once.
