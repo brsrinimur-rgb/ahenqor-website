@@ -8,19 +8,19 @@
 <style>
 
   :root{
-    --bg:#0a0e17;
-    --bg-alt:#0f1420;
-    --bg-card:#131a29;
-    --border:#212b3d;
-    --text:#e9edf5;
-    --text-dim:#9aa5b8;
-    --text-faint:#6b7590;
-    --accent:#5b8cff;
-    --accent2:#7c5cff;
-    --accent-grad:linear-gradient(135deg,#5b8cff 0%,#7c5cff 100%);
-    --green:#37d399;
-    --amber:#e0a030;
-    --red:#ef8264;
+    --bg:#06110D;
+    --bg-alt:#0A1812;
+    --bg-card:#0F2119;
+    --border:#1B3A2C;
+    --text:#EEF7F1;
+    --text-dim:#A6BEB1;
+    --text-faint:#718D7D;
+    --accent:#22C55E;
+    --accent2:#15803D;
+    --accent-grad:linear-gradient(135deg,#22C55E 0%,#15803D 100%);
+    --green:#4ADEA7;
+    --amber:#D7A84E;
+    --red:#E97E68;
     --radius:14px;
     --maxw:1180px;
   }
@@ -45,7 +45,7 @@
     content:"";
     position:fixed;top:-200px;left:50%;transform:translateX(-50%);
     width:900px;height:900px;
-    background:radial-gradient(circle,rgba(91,140,255,0.16) 0%,rgba(124,92,255,0.06) 40%,transparent 70%);
+    background:radial-gradient(circle,rgba(34,197,94,0.16) 0%,rgba(21,128,61,0.07) 40%,transparent 70%);
     pointer-events:none;z-index:0;
   }
 
@@ -58,7 +58,7 @@
   /* Header */
   header{
     position:sticky;top:0;z-index:100;
-    background:rgba(10,14,23,0.9);
+    background:rgba(9,26,18,0.88);
     backdrop-filter:blur(10px);
   }
   nav{
@@ -83,8 +83,8 @@
     padding:11px 22px;border-radius:9px;font-size:14px;font-weight:600;
     cursor:pointer;border:none;transition:all .2s;white-space:nowrap;
   }
-  .btn-primary{background:var(--accent-grad);color:#fff;box-shadow:0 4px 20px rgba(91,140,255,0.35);}
-  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(91,140,255,0.5);}
+  .btn-primary{background:var(--accent-grad);color:#fff;box-shadow:0 4px 16px rgba(34,197,94,0.20);}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(34,197,94,0.50);}
   .btn-ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border);}
   .btn-ghost:hover{color:var(--text);border-color:var(--text-faint);}
   .btn-lg{padding:15px 30px;font-size:15px;}
@@ -101,7 +101,7 @@
   .hero{padding:80px 0 90px;text-align:center;position:relative;z-index:1;}
   .badge{
     display:inline-flex;align-items:center;gap:8px;
-    background:rgba(91,140,255,0.1);border:1px solid rgba(91,140,255,0.3);
+    background:rgba(34,197,94,0.10);border:1px solid rgba(34,197,94,0.30);
     color:var(--accent);font-size:13px;font-weight:600;
     padding:7px 16px;border-radius:100px;margin-bottom:26px;
   }
@@ -143,9 +143,9 @@
   .dash-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-dim);white-space:nowrap;}
   .dash-table tr:last-child td{border-bottom:none;}
   .status-pill{display:inline-block;padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;}
-  .status-pill.risk{background:rgba(239,130,100,0.15);color:var(--red);}
-  .status-pill.pending{background:rgba(224,160,48,0.15);color:var(--amber);}
-  .status-pill.good{background:rgba(55,211,153,0.15);color:var(--green);}
+  .status-pill.risk{background:rgba(233,126,104,0.15);color:var(--red);}
+  .status-pill.pending{background:rgba(215,168,78,0.15);color:var(--amber);}
+  .status-pill.good{background:rgba(74,222,167,0.15);color:var(--green);}
   .dash-caption{text-align:center;font-size:12px;color:var(--text-faint);margin-top:18px;}
 
   /* Role strip */
@@ -169,10 +169,10 @@
     background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
     padding:26px;transition:border-color .2s,transform .2s;
   }
-  .card:hover{border-color:rgba(91,140,255,0.4);transform:translateY(-3px);}
+  .card:hover{border-color:rgba(34,197,94,0.32);transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(34,197,94,0.35);}
   .icon-box{
     width:40px;height:40px;border-radius:10px;
-    background:rgba(91,140,255,0.12);border:1px solid rgba(91,140,255,0.25);
+    background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.25);
     display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;
   }
   .card h3{font-size:16px;font-weight:700;margin-bottom:8px;}
@@ -197,8 +197,8 @@
     background:var(--bg-card);border:1px solid var(--border);border-radius:100px;
     padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-dim);white-space:nowrap;
   }
-  .flow-chip.accent{border-color:var(--accent);color:var(--text);background:rgba(91,140,255,0.12);}
-  .flow-chip.risk{border-color:var(--amber);color:var(--amber);background:rgba(224,160,48,0.12);}
+  .flow-chip.accent{border-color:var(--accent);color:var(--text);background:rgba(34,197,94,0.12);}
+  .flow-chip.risk{border-color:var(--amber);color:var(--amber);background:rgba(215,168,78,0.12);}
   .flow-arrow{color:var(--text-faint);font-size:16px;}
   .flow-caption{text-align:center;font-size:12.5px;color:var(--text-faint);margin-top:22px;max-width:600px;margin-left:auto;margin-right:auto;}
 
@@ -249,7 +249,7 @@
   /* Sample tag */
   .sample-tag-wrap{text-align:center;margin-bottom:26px;}
   .sample-tag{
-    display:inline-block;background:rgba(224,160,48,0.12);border:1px solid rgba(224,160,48,0.35);
+    display:inline-block;background:rgba(215,168,78,0.12);border:1px solid rgba(215,168,78,0.35);
     color:var(--amber);font-size:12px;font-weight:700;padding:6px 14px;border-radius:100px;
   }
 
@@ -280,7 +280,7 @@
     background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
     padding:30px;display:flex;flex-direction:column;
   }
-  .price-card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 20px 60px -20px rgba(91,140,255,0.4);position:relative;}
+  .price-card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 20px 50px -22px rgba(34,197,94,0.30);position:relative;}
   .price-tag{
     position:absolute;top:-13px;left:50%;transform:translateX(-50%);
     background:var(--accent-grad);color:#fff;font-size:11px;font-weight:700;
@@ -323,7 +323,7 @@
   }
   .cta-banner-inner h2{font-size:clamp(24px,3.2vw,36px);font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:-0.5px;}
   .cta-banner-inner p{color:rgba(255,255,255,0.9);font-size:15.5px;margin-bottom:30px;}
-  .cta-banner .btn-primary{background:#fff;color:#1a2b5c;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
+  .cta-banner .btn-primary{background:#fff;color:#0B3B2A;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
   .cta-banner .btn-ghost{border-color:rgba(255,255,255,0.4);color:#fff;}
 
   /* Footer */
@@ -425,6 +425,19 @@
 @media(max-width:620px){
   .confidence,.priority-grid,.audit-list{grid-template-columns:1fr}
 }
+
+  /* AHENQOR Premium Emerald Theme Enhancements */
+  body{background:radial-gradient(circle at 50% -10%,rgba(34,197,94,.06),transparent 34%),var(--bg);}
+  header{box-shadow:0 8px 30px rgba(0,0,0,.18);}
+  .card,.product-card,.dash-kpi,.price-card,.rec-card,.demo-box,.hero-visual{box-shadow:0 10px 30px rgba(0,0,0,.12);}
+  .btn-primary{box-shadow:0 6px 20px rgba(34,197,94,.16);}
+  .btn-primary:hover{box-shadow:0 10px 32px rgba(34,197,94,.34);}
+
+
+  .form-fallback.success{color:var(--green);}
+  .form-fallback.error{color:var(--red);}
+  .demo-right button[disabled]{opacity:.65;cursor:not-allowed;transform:none;}
+
 </style>
 
 </head>
@@ -1055,7 +1068,13 @@
         </ul>
       </div>
       <div class="demo-right">
-        <form id="demoForm">
+        <form id="demoForm" novalidate>
+          <input type="hidden" name="product" value="RetailRecon AI">
+          <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+            <label>Leave this field empty
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+            </label>
+          </div>
           <div class="form-row">
             <div class="form-group">
               <label>First name</label>
@@ -1085,7 +1104,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Request Demo</button>
         </form>
-        <div class="form-fallback">Submitting opens your email client — this form isn't yet connected to a CRM. Prefer to just email us? Write to hello@ahenqor.com.</div>
+        <div class="form-fallback" id="formStatus" role="status" aria-live="polite">Your request will be sent securely to AHENQOR Technologies.</div>
       </div>
     </div>
   </div>
@@ -1203,17 +1222,55 @@
   });
 
   // Demo form — mailto fallback until a real CRM/email backend is connected
-  document.getElementById('demoForm').addEventListener('submit', function(e){
+  document.getElementById('demoForm').addEventListener('submit', async function(e){
     e.preventDefault();
-    const f = e.target;
-    const subject = encodeURIComponent('RetailRecon AI Demo Request — ' + f.company.value);
-    const body = encodeURIComponent(
-      'Name: ' + f.first.value + ' ' + f.last.value + '\n' +
-      'Work email: ' + f.email.value + '\n' +
-      'Company: ' + f.company.value + '\n' +
-      'Store locations: ' + f.stores.value
-    );
-    window.location.href = 'mailto:hello@ahenqor.com?subject=' + subject + '&body=' + body;
+
+    const form = e.currentTarget;
+    const status = document.getElementById('formStatus');
+    const button = form.querySelector('button[type="submit"]');
+
+    status.classList.remove('success','error');
+
+    if (!form.reportValidity()) return;
+
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    // Honeypot: silently treat bots as successful.
+    if (data.website) {
+      status.textContent = 'Thank you. Your request has been received.';
+      status.classList.add('success');
+      form.reset();
+      return;
+    }
+
+    button.disabled = true;
+    const originalText = button.textContent;
+    button.textContent = 'Sending…';
+    status.textContent = 'Sending your request…';
+
+    try {
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json().catch(()=>({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Unable to send your request.');
+      }
+
+      status.textContent = 'Thank you — your request has been sent to AHENQOR Technologies.';
+      status.classList.add('success');
+      form.reset();
+    } catch (err) {
+      status.textContent = 'We could not send the form right now. Please email hello@ahenqor.com.';
+      status.classList.add('error');
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
   });
 </script>
 
