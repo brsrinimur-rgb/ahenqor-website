@@ -74,7 +74,25 @@
     font-size:15px;font-weight:800;color:#fff;
   }
   .logo-sub{font-size:11px;color:var(--text-dim);font-weight:600;margin-left:4px;letter-spacing:1px;}
-  .nav-links{display:flex;gap:26px;align-items:center;}
+  .nav-links{display:flex;gap:22px;align-items:center;}
+
+  /* Persistent product switcher */
+  .product-switcher{position:relative;}
+  .product-switcher-btn{
+    display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--border);
+    border-radius:8px;background:rgba(7,36,24,.75);color:var(--text-dim);font-size:13px;font-weight:600;cursor:pointer;
+  }
+  .product-switcher-btn:hover,.product-switcher:focus-within .product-switcher-btn{color:var(--text);border-color:rgba(25,184,90,.45);}
+  .product-switcher-menu{
+    position:absolute;top:calc(100% + 10px);left:0;min-width:245px;padding:8px;background:#071f16;
+    border:1px solid var(--border);border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,.38);
+    opacity:0;visibility:hidden;transform:translateY(-6px);transition:.18s ease;z-index:300;
+  }
+  .product-switcher:hover .product-switcher-menu,.product-switcher:focus-within .product-switcher-menu{opacity:1;visibility:visible;transform:translateY(0);}
+  .product-switcher-menu a{display:block;padding:10px 12px;border-radius:8px;color:var(--text-dim);font-size:13px;}
+  .product-switcher-menu a:hover{background:rgba(25,184,90,.10);color:var(--text);}
+  .product-switcher-menu a.current{color:var(--accent);font-weight:700;background:rgba(25,184,90,.08);}
+  .product-switcher-menu .switcher-label{padding:8px 12px 6px;color:var(--text-faint);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;}
   .nav-links a{color:var(--text-dim);font-size:13.5px;font-weight:500;transition:color .2s;}
   .nav-links a:hover{color:var(--text);}
   .nav-cta{display:flex;gap:12px;align-items:center;}
@@ -441,7 +459,16 @@
       AHENQOR<span class="logo-sub">TECHNOLOGIES</span>
     </a>
     <div class="nav-links">
-      <a href="#dashboard">Product</a>
+      <div class="product-switcher">
+        <button class="product-switcher-btn" type="button" aria-haspopup="true">Products <span aria-hidden="true">▾</span></button>
+        <div class="product-switcher-menu">
+          <div class="switcher-label">AHENQOR Products</div>
+          <a class="current" href="./">RetailRecon AI</a>
+          <a href="../merchandiser-ai.html">Merchandiser AI</a>
+          <a href="../hotel-control-tower.html">Hotel Control Tower</a>
+          <a href="../index.html#products">View all products</a>
+        </div>
+      </div>
       <a href="#how-it-works">How It Works</a>
       <a href="#controls">Controls</a>
       <a href="#cfo-view">CFO View</a>
@@ -454,7 +481,10 @@
     <button class="menu-toggle" aria-label="Menu">☰</button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#dashboard">Product</a>
+    <a href="./">RetailRecon AI</a>
+    <a href="../merchandiser-ai.html">Merchandiser AI</a>
+    <a href="../hotel-control-tower.html">Hotel Control Tower</a>
+    <a href="../index.html#products">All Products</a>
     <a href="#how-it-works">How It Works</a>
     <a href="#controls">Controls</a>
     <a href="#cfo-view">CFO View</a>
