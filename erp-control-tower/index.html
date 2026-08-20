@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ERP Control Tower | Enterprise Finance & ERP Intelligence — AHENQOR Technologies</title>
+<meta name="description" content="ERP Control Tower by AHENQOR unifies finance, treasury, reporting, D365 integration, administration and AI-assisted executive decision support.">
+<style>
+:root{--bg:#03150e;--alt:#061c13;--card:#09251a;--border:#16402d;--text:#edf8f1;--dim:#9db6a7;--faint:#688878;--accent:#19b85a;--green:#37d399;--amber:#e0a030;--grad:linear-gradient(135deg,#20c968,#119f4d);--max:1180px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}body:before{content:"";position:fixed;inset:-250px 0 auto 50%;transform:translateX(-50%);width:1000px;height:900px;background:radial-gradient(circle,rgba(25,184,90,.16),transparent 67%);pointer-events:none}a{text-decoration:none;color:inherit}.wrap{max-width:var(--max);margin:auto;padding:0 24px}section,header,footer{position:relative;z-index:1}
+.top{padding:8px;text-align:center;font-size:12px;color:var(--faint);background:var(--alt);border-bottom:1px solid var(--border)}
+header{position:sticky;top:0;z-index:50;background:rgba(3,21,14,.95);backdrop-filter:blur(12px)}nav{max-width:var(--max);margin:auto;padding:16px 24px;display:flex;align-items:center;gap:25px;border-bottom:1px solid var(--border)}.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;margin-right:auto}.mark{width:32px;height:32px;border-radius:8px;background:var(--grad);display:grid;place-items:center}.sub{font-size:11px;color:var(--dim);letter-spacing:1px}.links{display:flex;gap:20px;align-items:center}.links a{font-size:13px;color:var(--dim)}.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 20px;border-radius:9px;border:1px solid var(--border);font-size:13px;font-weight:750}.primary{background:var(--grad);border-color:transparent;color:white;box-shadow:0 6px 24px rgba(25,184,90,.25)}.ghost{color:var(--dim)}.menu{display:none;background:none;border:0;color:white;font-size:24px}.mobile{display:none;background:var(--bg);padding:10px 24px 20px;border-bottom:1px solid var(--border)}.mobile.open{display:grid}.mobile a{padding:11px 0;border-bottom:1px solid var(--border);color:var(--dim)}
+.hero{text-align:center;padding:86px 0 72px}.badge{display:inline-block;padding:7px 15px;border-radius:100px;border:1px solid rgba(25,184,90,.3);background:rgba(25,184,90,.1);color:var(--accent);font-size:13px;font-weight:700;margin-bottom:22px}.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:12px}.hero h1{font-size:clamp(39px,6vw,66px);line-height:1.05;letter-spacing:-2px;max-width:980px;margin:auto}.grad{background:var(--grad);background-clip:text;-webkit-background-clip:text;color:transparent}.hero p{max-width:790px;margin:24px auto 30px;color:var(--dim);font-size:18px}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.big{padding:15px 27px;font-size:15px}
+.command{max-width:1000px;margin:58px auto 0;background:rgba(9,37,26,.92);border:1px solid var(--border);border-radius:18px;padding:22px;text-align:left;box-shadow:0 25px 70px rgba(0,0,0,.25)}.command-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.command-head strong{font-size:14px}.live{font-size:11px;color:var(--green);border:1px solid rgba(55,211,153,.25);padding:5px 9px;border-radius:100px}.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.kpi{background:var(--alt);border:1px solid var(--border);border-radius:10px;padding:14px}.kpi small{display:block;color:var(--faint);font-size:9.5px;text-transform:uppercase;margin-bottom:5px}.kpi strong{font-size:17px}.good{color:var(--green)}.warn{color:var(--amber)}
+.sec{padding:88px 0}.alt{background:var(--alt);border-block:1px solid var(--border)}.head{text-align:center;max-width:760px;margin:0 auto 42px}.head h2{font-size:clamp(28px,4vw,42px);line-height:1.15;margin-bottom:13px}.head p{color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;transition:.2s}.card:hover{transform:translateY(-4px);border-color:rgba(25,184,90,.5);box-shadow:0 18px 45px rgba(0,0,0,.18)}.icon{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:rgba(25,184,90,.11);border:1px solid rgba(25,184,90,.22);margin-bottom:15px;font-weight:800;color:var(--green)}.card h3{font-size:17px;margin-bottom:8px}.card p{font-size:13.5px;color:var(--dim)}
+.flow{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center}.chip{padding:11px 16px;border:1px solid var(--border);border-radius:100px;background:var(--card);color:var(--dim);font-size:12px;font-weight:700}.chip.hot{border-color:var(--accent);color:var(--text);background:rgba(25,184,90,.1)}.arrow{color:var(--faint)}
+.cfo{display:grid;grid-template-columns:1fr 1.15fr;gap:28px;align-items:center}.cfo h2{font-size:38px;line-height:1.15;margin-bottom:15px}.cfo p{color:var(--dim);margin-bottom:20px}.bullets{display:grid;gap:10px}.bullet{padding:12px 14px;border-radius:9px;background:var(--card);border:1px solid var(--border);font-size:13px;color:var(--dim)}.panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px}.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}.row span{color:var(--dim)}.row:last-child{border:0}
+.cta{padding:82px 0;text-align:center}.cta-box{background:var(--grad);padding:52px 30px;border-radius:22px}.cta-box h2{font-size:36px;margin-bottom:12px}.cta-box p{max-width:690px;margin:0 auto 24px;color:rgba(255,255,255,.9)}.cta-box .btn{background:white;color:#0b4a2b;border:0}
+.demo{max-width:820px;margin:auto;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:28px}.demo p{color:var(--dim);font-size:14px}.field{margin-bottom:11px}.field label{display:block;font-size:11px;color:var(--faint);font-weight:700;margin-bottom:5px}.field input,.field textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--alt);color:white;font:inherit}.field textarea{min-height:85px}#status{font-size:11px;color:var(--faint);margin-top:10px;text-align:center}
+footer{padding:42px 0 25px;border-top:1px solid var(--border);color:var(--faint);font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot a{color:var(--dim);margin-left:16px}
+@media(max-width:900px){.links{display:none}.menu{display:block}.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr 1fr}.cfo{grid-template-columns:1fr}}
+@media(max-width:650px){.grid,.demo{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.hero{padding-top:55px}.sub{display:none}.home-text{display:none}}
+</style>
+</head>
+<body>
+<div class="top"><a href="/">AHENQOR Technologies</a> &nbsp;›&nbsp; Products &nbsp;›&nbsp; ERP Control Tower</div>
+<header><nav>
+<a class="logo" href="/"><span class="mark">A</span>AHENQOR <span class="sub">TECHNOLOGIES</span></a>
+<div class="links"><a href="#platform">Platform</a><a href="#finance">Finance</a><a href="#d365">D365 Hub</a><a href="#cfo">AI CFO</a><a href="#security">Security</a></div>
+<a class="btn ghost" href="/">← <span class="home-text">&nbsp;AHENQOR Home</span></a>
+<a class="btn primary" href="#demo">Request Demo</a><button class="menu">☰</button>
+</nav><div class="mobile"><a href="/">← AHENQOR Home — View All Products</a><a href="#platform">Platform</a><a href="#finance">Finance</a><a href="#d365">D365 Hub</a><a href="#cfo">AI CFO</a><a href="#security">Security</a><a href="#demo">Request Demo</a></div></header>
 
+<section class="hero"><div class="wrap">
+<div class="badge">● Enterprise Finance • ERP • Management Control</div>
+<div class="eyebrow">ERP Control Tower</div>
+<h1>See the enterprise. <span class="grad">Control the numbers. Act with confidence.</span></h1>
+<p>One management layer for finance, treasury, ERP integration, reporting, administration and executive decision support — designed to turn fragmented enterprise data into controlled action.</p>
+<div class="actions"><a class="btn primary big" href="#demo">Request Executive Demo</a><a class="btn ghost big" href="#platform">Explore the Control Tower</a></div>
+<div class="command">
+<div class="command-head"><strong>ERP Control Tower — Executive Command Center</strong><span class="live">● LIVE VIEW</span></div>
+<div class="kpis">
+<div class="kpi"><small>Revenue MTD</small><strong>SAR 18.4M</strong></div>
+<div class="kpi"><small>Cash Position</small><strong>SAR 6.8M</strong></div>
+<div class="kpi"><small>Receivables</small><strong>SAR 3.1M</strong></div>
+<div class="kpi"><small>Payables</small><strong>SAR 2.4M</strong></div>
+<div class="kpi"><small>Control Alerts</small><strong class="warn">12</strong></div>
+<div class="kpi"><small>Close Status</small><strong class="good">92%</strong></div>
+</div></div>
+</div></section>
+
+<section class="sec alt" id="platform"><div class="wrap"><div class="head"><div class="eyebrow">One Enterprise Control Layer</div><h2>From transaction detail to executive decision</h2><p>ERP Control Tower brings operational finance, ERP connectivity, controls and management visibility into one governed environment.</p></div>
+<div class="grid">
+<div class="card"><div class="icon">GL</div><h3>Finance & Accounting</h3><p>General ledger oversight, period control, financial reporting and accounting workflows with enterprise-wide visibility.</p></div>
+<div class="card"><div class="icon">AR</div><h3>Receivables & Collections</h3><p>Track customer balances, ageing, collections exposure and exceptions that need action.</p></div>
+<div class="card"><div class="icon">AP</div><h3>Payables Control</h3><p>Monitor liabilities, payment readiness, approvals and vendor-facing finance workflows.</p></div>
+<div class="card"><div class="icon">TR</div><h3>Treasury & Cash</h3><p>Bring cash position, bank activity, liquidity and treasury controls into management view.</p></div>
+<div class="card"><div class="icon">BU</div><h3>Budgeting & Performance</h3><p>Compare actuals, budgets and business performance with drill-down visibility for management.</p></div>
+<div class="card"><div class="icon">AI</div><h3>AI CFO Copilot</h3><p>Surface trends, anomalies, questions and management insights while preserving controlled source data.</p></div>
+</div></div></section>
+
+<section class="sec" id="finance"><div class="wrap"><div class="head"><div class="eyebrow">Connected Finance</div><h2>Know what happened, what needs attention and what management should do next</h2></div>
+<div class="flow"><span class="chip">ERP Data</span><span class="arrow">→</span><span class="chip">Finance Controls</span><span class="arrow">→</span><span class="chip">Exceptions</span><span class="arrow">→</span><span class="chip">Approvals</span><span class="arrow">→</span><span class="chip hot">Executive View</span><span class="arrow">→</span><span class="chip">Action</span></div>
+</div></section>
+
+<section class="sec alt" id="d365"><div class="wrap"><div class="head"><div class="eyebrow">D365 Integration Center</div><h2>Connect the control layer to your ERP environment</h2><p>Keep integration, validation and operational monitoring visible instead of hiding critical finance movement inside disconnected interfaces.</p></div>
+<div class="grid">
+<div class="card"><div class="icon">↔</div><h3>D365 Integration Hub</h3><p>Centralize integration status, enterprise data flows and connector visibility for Microsoft Dynamics 365 environments.</p></div>
+<div class="card"><div class="icon">✓</div><h3>Validation Before Action</h3><p>Use controlled validation and approval steps before high-impact ERP actions move forward.</p></div>
+<div class="card"><div class="icon">◎</div><h3>Multi-Company Visibility</h3><p>Give authorized management a consolidated view while preserving tenant, company and role boundaries.</p></div>
+</div></div></section>
+
+<section class="sec" id="cfo"><div class="wrap"><div class="cfo">
+<div><div class="eyebrow">AI CFO Copilot</div><h2>Move from dashboards to management questions.</h2><p>Executives should not have to search across multiple reports to understand what changed. The control tower is designed to bring important finance signals closer to the decision.</p>
+<div class="bullets"><div class="bullet">✓ Surface material movements and unusual trends</div><div class="bullet">✓ Focus management attention on exceptions and risk</div><div class="bullet">✓ Connect insight back to governed enterprise data</div><div class="bullet">✓ Support management reporting and decision preparation</div></div></div>
+<div class="panel"><div class="eyebrow">Executive Brief — Illustrative</div><div class="row"><span>Cash movement vs prior week</span><strong class="good">+8.4%</strong></div><div class="row"><span>Overdue receivables requiring action</span><strong class="warn">SAR 640K</strong></div><div class="row"><span>Budget variance requiring review</span><strong>3 departments</strong></div><div class="row"><span>Open finance-control exceptions</span><strong class="warn">12</strong></div><div class="row"><span>Period-close readiness</span><strong class="good">92%</strong></div></div>
+</div></div></section>
+
+<section class="sec alt" id="security"><div class="wrap"><div class="head"><div class="eyebrow">Enterprise Administration & Security</div><h2>Control who sees, approves and administers what</h2><p>Enterprise visibility only works when access and administration are designed around company, tenant and role boundaries.</p></div>
+<div class="grid"><div class="card"><div class="icon">RB</div><h3>Role-Based Access</h3><p>Control access to finance, reporting, integration and administration functions according to responsibility.</p></div><div class="card"><div class="icon">MT</div><h3>Multi-Tenant Administration</h3><p>Support company onboarding, tenant administration and scoped user management from an enterprise layer.</p></div><div class="card"><div class="icon">AU</div><h3>Governed Actions</h3><p>Keep important administrative and finance actions controlled, visible and suitable for enterprise audit requirements.</p></div></div>
+</div></section>
+
+<section class="cta"><div class="wrap"><div class="cta-box"><h2>Your ERP records the business. The Control Tower helps you run it.</h2><p>Bring finance, integration, management control and executive intelligence together in one AHENQOR enterprise platform.</p><a class="btn big" href="#demo">Request ERP Control Tower Demo</a></div></div></section>
+
+<section class="sec alt" id="demo"><div class="wrap"><div class="demo"><div><div class="eyebrow">Executive Demo</div><h2>Show us your ERP and finance landscape</h2><p>Tell us your ERP, company structure and biggest finance-control challenge. We can focus the demonstration around the areas that matter most to your management team.</p></div><div>
+<form id="form"><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Work email</label><input type="email" name="email" required></div><div class="field"><label>Company</label><input name="company" required></div><div class="field"><label>Current ERP / challenge</label><textarea name="message" placeholder="Example: D365, multi-company reporting, treasury visibility, month-end controls..."></textarea></div><button class="btn primary" style="width:100%" type="submit">Request Demo</button></form><div id="status">Your request will be sent securely to AHENQOR.</div>
+</div></div></div></section>
+
+<footer><div class="wrap foot"><span>© 2026 AHENQOR Technologies. All rights reserved.</span><span><a href="/">AHENQOR Home</a><a href="/retailrecon-ai/">RetailRecon AI</a><a href="/invoiceflow-ai/">InvoiceFlow AI</a></span></div></footer>
+<script>
+const m=document.querySelector('.menu'),mob=document.querySelector('.mobile');m.onclick=()=>{mob.classList.toggle('open');m.textContent=mob.classList.contains('open')?'✕':'☰'};
+document.querySelectorAll('.mobile a').forEach(a=>a.onclick=()=>mob.classList.remove('open'));
+document.getElementById('form').onsubmit=async e=>{e.preventDefault();const f=e.target,b=f.querySelector('button'),s=document.getElementById('status');b.disabled=true;b.textContent='Sending...';try{let r=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'ERP Control Tower Product Page',product:'ERP Control Tower',name:f.name.value.trim(),email:f.email.value.trim(),company:f.company.value.trim(),message:f.message.value.trim()})});if(!r.ok)throw 0;f.reset();s.textContent='Thank you. Your ERP Control Tower demo request has been received.'}catch(x){s.innerHTML='Unable to submit right now. Please email <a href="mailto:hello@ahenqor.com" style="color:var(--green)">hello@ahenqor.com</a>.'}finally{b.disabled=false;b.textContent='Request Demo'}};
+</script>
+</body></html>
